@@ -5,10 +5,12 @@ width = 10,
 currentPosition = 4,
 grid = Array.from(div);
 
-let  dummy = [];
-for(let i=0; i<div.length;i++){
-    dummy.push(div[i]);
+function arr(){
+    let container = [];
+    div.forEach(divs=>container.push(divs));
+    return container;
 }
+let dummy = arr();
 
 
 
