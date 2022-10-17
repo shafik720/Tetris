@@ -43,11 +43,25 @@ const lTetromino = [
 
 let theTetrominoes  = [lTetromino,zTetromino,tTetromino,oTetromino,iTetromino]
 let currentPosition = 4 ;
-let current = theTetrominoes[0][0];
+let randomPosition = Math.floor(Math.random() * parseInt(theTetrominoes.length))
+let current = theTetrominoes[randomPosition][0];
 
 function draw (){
     current.forEach(index=>{
         squares[currentPosition+index].classList.add('tetromino');
     })
 }
+function unDraw (){
+    current.forEach(index=>{
+        squares[currentPosition+index].classList.remove('tetromino');
+    })
+}
 draw();
+
+
+let moveDown = () =>{
+    unDraw();
+    currentPosition += width;
+    draw();
+}
+let timeDraw = setInterval(moveDown,1000);
