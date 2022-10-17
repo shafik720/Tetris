@@ -1,8 +1,9 @@
 
 const tetrisParent = document.querySelector('.tetris-parent'),
-grid = tetrisParent.querySelectorAll('div'),
-width = 10,
-div = Array.from(grid);
+grid = tetrisParent.querySelectorAll('div');
+let width = 10;
+let div = Array.from(grid);
+let currentPosition = 4;
 // console.log(div);
 
 
@@ -46,5 +47,17 @@ let tetrisContainer = [lTetromino,zTetromino,tTetromino,oTetromino, iTetromino];
 let random = Math.floor(Math.random() * tetrisContainer.length);
 
 let container = tetrisContainer[random][0];
-console.log(container);
-container.forEach(index=>div[index+4].classList.add('tetromino'))
+
+function showTetris(){
+    container.forEach(index=>div[index+currentPosition].classList.add('tetromino'));
+}
+function removeTetris(){
+    container.forEach(index=>div[index+currentPosition].classList.remove('tetromino'));
+}
+showTetris();
+let runDown = () =>{
+    removeTetris();
+    currentPosition += width;
+    showTetris();
+}
+let timeLapse = setInterval(runDown,1000);
