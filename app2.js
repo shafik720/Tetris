@@ -2,6 +2,8 @@
 
 let tetrisParent = document.querySelector('.tetris-parent'),
 allDivs = tetrisParent.querySelectorAll('div'),
+width = 10,
+currentPosition = 4,
 divsArray = Array.from(allDivs)
 ;
 
@@ -44,3 +46,18 @@ const lTetromino = [
 let tetriMony = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
 let random = Math.floor(Math.random() * tetriMony.length)
 let container = tetriMony[random][0];
+
+function show(){
+    container.forEach(index=>divsArray[index + currentPosition].classList.add('blue'));
+}
+function unShow(){
+    container.forEach(index=>divsArray[index + currentPosition].classList.remove('blue'));
+}
+function down(){
+    unShow();
+    currentPosition += width;
+    show();
+}
+let runEm = setInterval(down,1000);
+
+show();
