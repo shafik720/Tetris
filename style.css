@@ -9,13 +9,14 @@ body{
 
 .tetris-parent{
     border: 3px solid grey;
-    display: grid;
-    grid-template-columns: repeat(10,0fr);
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 400px;
 }
 .tetris-parent div{
     width: 20px;
     height: 20px;
-    border: 2px solid cyan;    
 }
 
 .tetromino{

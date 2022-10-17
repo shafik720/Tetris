@@ -3,6 +3,7 @@
 const grid = document.querySelector('.tetris-parent'),
 squares = grid.querySelectorAll('div')
 width = 10
+currentRotation = 0;
 
 // lTetromino 
 
@@ -44,7 +45,7 @@ const lTetromino = [
 let theTetrominoes  = [lTetromino,zTetromino,tTetromino,oTetromino,iTetromino]
 let currentPosition = 4 ;
 let randomPosition = Math.floor(Math.random() * parseInt(theTetrominoes.length))
-let current = theTetrominoes[randomPosition][0];
+let current = theTetrominoes[randomPosition][currentRotation];
 
 function draw (){
     current.forEach(index=>{
@@ -58,10 +59,23 @@ function unDraw (){
 }
 draw();
 
-
-let moveDown = () =>{
+let timeDraw = setInterval(moveDown,400);
+function moveDown(){
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
 }
-let timeDraw = setInterval(moveDown,1000);
+
+function freeze(){
+    if(current.some(index => squares[index + currentPosition + width].classList.contains('taken'))){
+        current.forEach(index => squares[currentPosition + index].classList.add('taken'));
+        
+        randomPosition = Math.floor(Math.random() * theTetrominoes.length);
+        current = theTetrominoes[randomPosition][currentRotation];
+        currentPosition = 4 ;
+        draw();
+    }
+}
+
+// current.some(index=>console.log(index));
