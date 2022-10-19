@@ -79,9 +79,12 @@ function control(e){
     moveRight();
   }else if(e.keyCode === 38){
     rotate();
+  }else if(e.keyCode ===40){
+    moveDown();
   }
 }
 document.addEventListener('keyup', control);
+document.addEventListener('keydown', control); // the classical behavior is to speed up the block if down button is kept pressed so doing that
 
 function moveDown(){
     unDraw();
