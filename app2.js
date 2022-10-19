@@ -1,5 +1,5 @@
 
-let grid = document.querySelectorAll('.tetris-parent div'),
+let squares = Array.from(document.querySelectorAll('.tetris-parent div')),
 width = 10,
 currentPosition = 4,
 currentRotation = 0
@@ -45,7 +45,35 @@ let tetrominos = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
 let random = Math.floor(Math.random() * tetrominos.length)
 let current = tetrominos[random][0];
 
-function draw(){
-  current.forEach(index=>grid[index + currentPosition].classList.add('blue'));
+
+
+function draw (){
+  current.forEach(index=>{
+      squares[currentPosition+index].classList.add('tetromino');
+  })
 }
 draw();
+function unDraw (){
+  current.forEach(index=>{
+      squares[currentPosition+index].classList.remove('tetromino');
+  })
+}
+let timeDraw = setInterval(moveDown,400);
+
+function moveDown(){
+  unDraw();
+  currentPosition += 10;
+  draw();
+  freeze();
+}
+
+function freeze(){
+  if(current.some(index => squares[index + currentPosition + width].classList.contains('taken'))){
+    current.forEach(index=>squares[index + currentPosition].classList.add('taken'));
+
+    random = Math.floor(Math.random() * tetrominos.length)
+    current = tetrominos[random][0];
+    currentPosition = 4;
+    draw();
+  }
+}

@@ -1,7 +1,7 @@
 
 
-let grid = document.querySelector('.tetris-parent'),
-squares = grid.querySelectorAll('div'),
+let squares = document.querySelector('.tetris-parent'),
+squares = squares.querySelectorAll('div'),
 width = 10,
 nextRandom = 0,
 currentRotation = 0;
