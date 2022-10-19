@@ -1,9 +1,10 @@
 
 
-let squares = document.querySelector('.tetris-parent'),
-squares = squares.querySelectorAll('div'),
+let square = document.querySelector('.tetris-parent'),
+squares = square.querySelectorAll('div'),
 width = 10,
 nextRandom = 0,
+timeId,
 currentRotation = 0;
 
 counter = 0;
@@ -68,7 +69,7 @@ function unDraw (){
 }
 
 
-let timeId = setInterval(moveDown,350);
+
 
 // making keyboard press working
 function control(e){
@@ -166,3 +167,15 @@ function displayShape(){
   })
 
 }
+
+document.getElementById('start').addEventListener('click',()=>{
+  if(timeId){
+    clearInterval(timeId);
+    timeId = null;
+  }else{
+    draw();
+    timeId = setInterval(moveDown,350);
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    displayShape();
+  }
+})
