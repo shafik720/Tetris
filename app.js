@@ -71,6 +71,8 @@ let timeId = setInterval(moveDown,400);
 function control(e){
   if(e.keyCode === 37){
     moveLeft();
+  }else if(e.keyCode === 39){
+    moveRight();
   }
 }
 document.addEventListener('keyup', control);
@@ -105,3 +107,12 @@ function moveLeft(){
   draw();
 }
 
+function moveRight(){
+  unDraw();
+  const  isRightEdge = current.some(index=>(currentPosition + index) % width === width-1);
+  if(!isRightEdge) currentPosition+=1;
+  if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+    currentPosition -= 1;
+  }
+  draw();
+}
