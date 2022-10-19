@@ -48,6 +48,14 @@ let current = tetriminos[random][currentRotation];
 
 let timeTravel = setInterval(moveDown,300);
 
+document.addEventListener('keyup',control);
+
+function control(e){
+    if(e.keyCode === 37){
+        moveLeft();
+    }
+}
+
 draw();
 function draw(){
     current.forEach(index=>squares[index + currentPosition].classList.add('blue'));
@@ -72,4 +80,14 @@ function freeze(){
         draw();
         
     }
+}
+
+function moveLeft(){
+    unDraw();
+    let isLeft = current.some(index=>(currentPosition + index) % width === 0);
+    if(!isLeft) currentPosition -= 1;
+    if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        currentPosition += 1;
+    }
+    draw();
 }
