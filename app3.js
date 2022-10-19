@@ -60,8 +60,16 @@ function moveDown(){
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
 }
 
 function freeze(){
-    if(current.some(index=>squares[]))
+    if(current.some(index=>squares[index + currentPosition + width].classList.contains('taken'))){
+        current.forEach(index=>squares[index + currentPosition].classList.add('taken'));
+        currentPosition = 4;
+        random = Math.floor(Math.random() * tetriminos.length);
+        current = tetriminos[random][currentRotation];
+        draw();
+        
+    }
 }
