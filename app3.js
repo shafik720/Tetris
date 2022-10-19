@@ -2,8 +2,8 @@
 
 let squares = document.querySelectorAll('.tetris-parent div'),
 width = 10,
-currentPosition = 4;
-currentRotation = 0;
+currentPosition = 4,
+currentRotation = 0
 ;
 
 const lTetromino = [
@@ -55,6 +55,8 @@ function control(e){
         moveLeft();
     }else if(e.keyCode === 39){
         moveRight();
+    }else if(e.keyCode === 38){
+        rotate();
     }
 }
 
@@ -79,8 +81,7 @@ function freeze(){
         currentPosition = 4;
         random = Math.floor(Math.random() * tetriminos.length);
         current = tetriminos[random][currentRotation];
-        draw();
-        
+        draw();        
     }
 }
 
@@ -101,4 +102,14 @@ function moveRight(){
         currentPosition -= 1 ;
     }
     draw();
+}
+
+function rotate(){
+    unDraw();
+    currentRotation++;
+    if(currentRotation>=current.length){
+        currentRotation = 0 ;
+    }
+    current = tetriminos[random][currentRotation];
+    draw();     
 }
