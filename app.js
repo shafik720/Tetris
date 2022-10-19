@@ -5,6 +5,12 @@ squares = grid.querySelectorAll('div')
 width = 10
 currentRotation = 0;
 
+counter = 0;
+squares.forEach(index=>{
+  index.innerText = counter;
+  counter++;
+})
+
 // lTetromino 
 const lTetromino = [
     [1, width + 1, width * 2 + 1, 2],
@@ -51,14 +57,24 @@ function draw (){
         squares[currentPosition+index].classList.add('tetromino');
     })
 }
+draw();
 function unDraw (){
     current.forEach(index=>{
         squares[currentPosition+index].classList.remove('tetromino');
     })
 }
-draw();
 
-let timeDraw = setInterval(moveDown,400);
+
+let timeId = setInterval(moveDown,400);
+
+// making keyboard press working
+function control(e){
+  if(e.keyCode === 37){
+    moveLeft();
+  }
+}
+document.addEventListener('keyup', control);
+
 function moveDown(){
     unDraw();
     currentPosition += width;
@@ -67,7 +83,7 @@ function moveDown(){
 }
 
 function freeze(){
-    if(current.some(index => squares[index + currentPosition + width].classList.contains('taken'))){
+    if(current.some(index => squares[index + currentPosition + width].classList.contains('taken'))){      
         current.forEach(index => squares[currentPosition + index].classList.add('taken'));
         
         randomPosition = Math.floor(Math.random() * theTetrominoes.length);
@@ -77,4 +93,15 @@ function freeze(){
     }
 }
 
-// current.some(index=>console.log(index));
+function moveLeft(){
+  unDraw();
+  const isLeftEdge = current.some(index=>(currentPosition + index) % width === 0);
+
+  if(!isLeftEdge) currentPosition-=1;
+
+  if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+    currentPosition += 1 ;
+  }
+  draw();
+}
+
