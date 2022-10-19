@@ -61,7 +61,7 @@ function draw (){
         squares[currentPosition+index].classList.add('tetromino');
     })
 }
-draw();
+
 function unDraw (){
     current.forEach(index=>{
         squares[currentPosition+index].classList.remove('tetromino');
