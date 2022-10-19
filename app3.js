@@ -61,3 +61,7 @@ function moveDown(){
     currentPosition += width;
     draw();
 }
+
+function freeze(){
+    if(current.some(index=>squares[]))
+}
