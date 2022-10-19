@@ -53,6 +53,8 @@ document.addEventListener('keyup',control);
 function control(e){
     if(e.keyCode === 37){
         moveLeft();
+    }else if(e.keyCode === 39){
+        moveRight();
     }
 }
 
@@ -88,6 +90,15 @@ function moveLeft(){
     if(!isLeft) currentPosition -= 1;
     if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
         currentPosition += 1;
+    }
+    draw();
+}
+function moveRight(){
+    unDraw();
+    const isRight = current.some(index=>(index + currentPosition)% width === width-1);
+    if(!isRight) currentPosition += 1;
+    if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        currentPosition -= 1 ;
     }
     draw();
 }
