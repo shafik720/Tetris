@@ -47,7 +47,7 @@ let tetriminos = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
 let random = Math.floor(Math.random() * tetriminos.length);
 let current = tetriminos[random][currentRotation];
 
-let timeTravel = setInterval(moveDown,300);
+let timeTravel = setInterval(moveDown,500);
 
 document.addEventListener('keyup',control);
 document.addEventListener('keydown',control);

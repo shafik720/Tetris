@@ -83,8 +83,8 @@ function control(e){
     moveDown();
   }
 }
-document.addEventListener('keyup', control);
-document.addEventListener('keydown', control); // the classical behavior is to speed up the block if down button is kept pressed so doing that
+document.addEventListener('keydown', control);
+// document.addEventListener('keydown', control); // the classical behavior is to speed up the block if down button is kept pressed so doing that
 
 function moveDown(){
     unDraw();
