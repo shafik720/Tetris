@@ -1,8 +1,9 @@
 
 
-const grid = document.querySelector('.tetris-parent'),
-squares = grid.querySelectorAll('div')
-width = 10
+let grid = document.querySelector('.tetris-parent'),
+squares = grid.querySelectorAll('div'),
+width = 10,
+nextRandom = 0,
 currentRotation = 0;
 
 counter = 0;
@@ -47,6 +48,8 @@ const lTetromino = [
     [width, width + 1, width + 2, width + 3]
   ]
 
+
+
 let theTetrominoes  = [lTetromino,zTetromino,tTetromino,oTetromino,iTetromino]
 let currentPosition = 4 ;
 let randomPosition = Math.floor(Math.random() * parseInt(theTetrominoes.length))
@@ -65,7 +68,7 @@ function unDraw (){
 }
 
 
-let timeId = setInterval(moveDown,400);
+let timeId = setInterval(moveDown,350);
 
 // making keyboard press working
 function control(e){
@@ -85,15 +88,18 @@ function moveDown(){
     draw();
     freeze();
 }
-
+// ---------------------------- freeze function -------------
 function freeze(){
     if(current.some(index => squares[index + currentPosition + width].classList.contains('taken'))){      
         current.forEach(index => squares[currentPosition + index].classList.add('taken'));
         
-        randomPosition = Math.floor(Math.random() * theTetrominoes.length);
+        randomPosition = nextRandom;
+        nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+        
         current = theTetrominoes[randomPosition][currentRotation];
         currentPosition = 4 ;
         draw();
+        displayShape();
     }
 }
 
@@ -127,4 +133,36 @@ function rotate(){
   }
   current = theTetrominoes[randomPosition][currentRotation];
   draw();
+}
+
+
+// Mini display 
+
+let displaySquares = document.querySelectorAll('.mini-grid div'),
+displayIndex = 0;
+displayWidth = 4;
+
+counter = 0;
+displaySquares.forEach(index=>{
+  index.innerText = counter;
+  counter++;
+});
+
+const upNextTetromino = [
+  [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+  [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+  [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+  [0, 1, displayWidth, displayWidth + 1], // O tetromino
+  [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+] 
+
+function displayShape(){
+  displaySquares.forEach(square=>{
+    square.classList.remove('tetromino');
+  })
+
+  upNextTetromino[nextRandom].forEach(index=>{
+    displaySquares[index + displayIndex].classList.add('tetromino')
+  })
+
 }

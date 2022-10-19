@@ -25,3 +25,25 @@ body{
 .blue{
     background: blue;
 }
+
+
+/* ----------------------------------
+Mini grid  
+------------------------------------*/
+.wrapper{
+    display: flex;
+    margin-top: 100px;
+}
+.mini-grid{
+    margin: 50px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    background: orange;
+    display: flex;
+    flex-wrap: wrap;
+}
+.mini-grid div{
+    width: 20px;
+    height: 20px;
+}
