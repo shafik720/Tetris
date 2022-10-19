@@ -50,6 +50,7 @@ let current = tetriminos[random][currentRotation];
 let timeTravel = setInterval(moveDown,300);
 
 document.addEventListener('keyup',control);
+document.addEventListener('keydown',control);
 
 function control(e){
     if(e.keyCode === 37){
@@ -58,6 +59,8 @@ function control(e){
         moveRight();
     }else if(e.keyCode === 38){
         rotate();
+    }else if(e.keyCode === 40){
+        moveDown();
     }
 }
 
