@@ -177,7 +177,7 @@ document.getElementById('start').addEventListener('click',()=>{
     timeId = null;
   }else{
     draw();
-    timeId = setInterval(moveDown,350);
+    timeId = setInterval(moveDown,750);
     nextRandom = Math.floor(Math.random() * theTetrominoes.length);
     displayShape();
   }
