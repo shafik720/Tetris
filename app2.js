@@ -128,7 +128,6 @@ function rotate(){
     current = tetromino[random][currentRotation];
     draw();
   }else{
-    console.log('empty');
     draw();
   }
 }
