@@ -64,7 +64,10 @@ function moveDown(){
 document.addEventListener('keydown',(e)=>{
   if(e.keyCode === 37 ){
     moveLeft();
-    console.log('got ya');
+  }else if(e.keyCode === 39){
+    moveRight();
+  }else if(e.keyCode === 40){
+    moveDown();
   }
 })
 
@@ -85,6 +88,16 @@ function moveLeft(){
   if(!isLeftEdges) currentPosition -= 1;
   if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
     currentPosition += 1;
+  }
+  draw();
+}
+
+function moveRight(){
+  unDraw();
+  const isRightEdge = current.some(index=>(currentPosition + index) % width ===(width-1));
+  if(!isRightEdge) currentPosition += 1;
+  if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+    currentPosition -= 1;
   }
   draw();
 }
