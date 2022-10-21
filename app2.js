@@ -61,6 +61,13 @@ function moveDown(){
   freeze();
 }
 
+document.addEventListener('keydown',(e)=>{
+  if(e.keyCode === 37 ){
+    moveLeft();
+    console.log('got ya');
+  }
+})
+
 function freeze(){
   if(current.some(index=>containers[index + width + currentPosition].classList.contains('taken'))){
     current.forEach(index=>containers[index + currentPosition].classList.add('taken'));
@@ -69,4 +76,15 @@ function freeze(){
     currentPosition  = 4;
     draw();
   }
+}
+
+function moveLeft(){
+  unDraw();
+  let isLeftEdges = current.some(index=>(currentPosition + index) % width === 0); 
+
+  if(!isLeftEdges) currentPosition -= 1;
+  if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+    currentPosition += 1;
+  }
+  draw();
 }
