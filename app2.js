@@ -52,7 +52,7 @@ function unDraw(){
   current.forEach(index=>containers[currentPosition + index].classList.remove('blue'));
 }
 
-let timeId = setInterval(moveDown,300);
+let timeId = setInterval(moveDown,500);
 
 function moveDown(){
   unDraw();
@@ -64,7 +64,10 @@ function moveDown(){
 document.addEventListener('keydown',(e)=>{
   if(e.keyCode === 37 ){
     moveLeft();
-  }else if(e.keyCode === 39){
+  }else if(e.keyCode === 38){
+    rotate();
+  }
+  else if(e.keyCode === 39){
     moveRight();
   }else if(e.keyCode === 40){
     moveDown();
@@ -100,4 +103,32 @@ function moveRight(){
     currentPosition -= 1;
   }
   draw();
+}
+
+function rotate(){
+    
+  // if(!(current.some(index=>containers[currentPosition + index].classList.contains('taken')))){
+  //   unDraw();
+  // currentRotation++;
+  // if(currentRotation>=current.length){
+  //   currentRotation = 0;
+  // }
+  //   current = tetromino[random][currentRotation];
+  //   draw();
+  // }
+  let x = currentRotation;
+  unDraw();
+  currentRotation++;
+  if(currentRotation>=current.length){
+      currentRotation = 0;
+    }
+    current = tetromino[random][currentRotation];
+  if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+    --currentRotation;
+    current = tetromino[random][currentRotation];
+    draw();
+  }else{
+    console.log('empty');
+    draw();
+  }
 }
