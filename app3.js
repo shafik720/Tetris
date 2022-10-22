@@ -45,10 +45,11 @@ let tetrominos = [lTetromino,zTetromino,oTetromino,tTetromino,iTetromino];
 let random = Math.floor(Math.random() * tetrominos.length);
 let current = tetrominos[random][currentRotation];
 
-function draw(){
+function draw(){    
     current.forEach(index=>squares[currentPosition + index].classList.add('blue'))
 }
 function unDraw(){
+    
     current.forEach(index=>squares[currentPosition + index].classList.remove('blue'));
 }
 draw();
@@ -107,6 +108,7 @@ function moveRight(){
 }
 
 function rotate(){
+    
     unDraw();
     currentRotation++;
     if(currentRotation === current.length){
@@ -115,9 +117,17 @@ function rotate(){
 
     current = tetrominos[random][currentRotation];
     if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        console.log(random);
+        if(random==3){
+            console.log('ok first');
+            if(current.some(index=>squares[index + currentPosition +1].classList.contains('taken'))){
+                currentPosition -= 1;  
+                console.log('ok final');
+            }
+        }
         --currentRotation;
         if(currentRotation<0) {
-            ++currentRotation;
+        ++currentRotation;
         }
         current = tetrominos[random][currentRotation];
         draw();
