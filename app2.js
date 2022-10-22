@@ -107,17 +107,68 @@ function moveRight(){
 
 function rotate(){
     
-  unDraw();
+  unDraw();  
   currentRotation++;
   if(currentRotation>=current.length){
       currentRotation = 0;
     }
-    current = tetromino[random][currentRotation];
+    current = tetromino[random][currentRotation];    
+    rotationBug();
   if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
     --currentRotation;
     current = tetromino[random][currentRotation];
+    rotationBug();
     draw();
   }else{
     draw();
   }
 }
+
+// rotation bug fixed;
+function isRightSide(){
+  return current.some(index=>(currentPosition + index + 1) % width === 0);
+}
+function isLeftSide(){
+  return current.some(index=>(currentPosition + index) %  width ===0);
+}
+
+function rotationBug(p){  
+  p = currentPosition;
+  if((p + 1) % width <4){
+    if(isRightSide()){
+      currentPosition += 1;
+      rotationBug(p);
+    }
+  }else if(p % width>5){
+    if(isRightSide()){
+      currentPosition -= 1 ;
+      rotationBug(p);
+    }
+  }
+}
+
+///FIX ROTATION OF TETROMINOS A THE EDGE 
+/* function isAtRight() {
+  return current.some(index=> (currentPosition + index + 1) % width === 0)  
+}
+
+function isAtLeft() {
+  return current.some(index=> (currentPosition + index) % width === 0)
+}
+
+  function checkRotatedPosition(P) {
+  P = currentPosition 
+    
+  if ((P+1) % width < 4) {            
+    if (isAtRight()) {           
+      currentPosition += 1; 
+      checkRotatedPosition(P); 
+      }
+  }
+  else if (P % width > 5) {
+    if (isAtLeft()) {
+      currentPosition -= 1;
+      checkRotatedPosition(P);
+    }
+  }
+} */

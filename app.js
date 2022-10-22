@@ -136,6 +136,7 @@ function rotate(){
     currentRotation = 0;
   }
   current = theTetrominoes[randomPosition][currentRotation];
+  checkRotatedPosition();
   draw();
 }
 
@@ -182,3 +183,30 @@ document.getElementById('start').addEventListener('click',()=>{
     displayShape();
   }
 })
+
+
+///FIX ROTATION OF TETROMINOS A THE EDGE 
+function isAtRight() {
+  return current.some(index=> (currentPosition + index + 1) % width === 0)  
+}
+
+function isAtLeft() {
+  return current.some(index=> (currentPosition + index) % width === 0)
+}
+
+  function checkRotatedPosition(P) {
+  P = P || currentPosition 
+    
+  if ((P+1) % width < 4) {            
+    if (isAtRight()) {           
+      currentPosition += 1; 
+      checkRotatedPosition(P); 
+      }
+  }
+  else if (P % width > 5) {
+    if (isAtLeft()) {
+      currentPosition -= 1;
+      checkRotatedPosition(P);
+    }
+  }
+}
