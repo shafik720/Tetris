@@ -72,7 +72,9 @@ function moveDown(){
   freeze();
 }
 
-document.addEventListener('keydown',(e)=>{
+document.addEventListener('keydown', control);
+
+function control(e){
   if(e.keyCode === 37 ){
     moveLeft();
   }else if(e.keyCode === 38){
@@ -83,7 +85,7 @@ document.addEventListener('keydown',(e)=>{
   }else if(e.keyCode === 40){
     moveDown();
   }
-})
+}
 
 function freeze(){
   if(current.some(index=>containers[index + width + currentPosition].classList.contains('taken'))){
@@ -151,7 +153,7 @@ function rotationBug(p){
       rotationBug(p);
     }
   }else if(p % width>5){
-    if(isRightSide()){
+    if(isLeftSide()){
       currentPosition -= 1 ;
       rotationBug(p);
     }
