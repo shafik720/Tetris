@@ -3,6 +3,7 @@ let containers = document.querySelectorAll('.tetris-parent div');
 let width = 10;
 let currentPosition = 4;
 let currentRotation = 0;
+let button = document.querySelector('.button-section button')
 
 // lTetromino 
 const lTetromino = [
@@ -52,7 +53,17 @@ function unDraw(){
   current.forEach(index=>containers[currentPosition + index].classList.remove('blue'));
 }
 
-let timeId = setInterval(moveDown,500);
+let timeId;
+
+button.addEventListener('click',()=>{
+  if(timeId){
+    clearInterval(timeId);
+    timeId = null;
+  }else if(!timeId){
+    timeId = setInterval(moveDown,500);
+  }
+  
+})
 
 function moveDown(){
   unDraw();
@@ -133,7 +144,7 @@ function isLeftSide(){
 }
 
 function rotationBug(p){  
-  p = currentPosition;
+  p = p || currentPosition;
   if((p + 1) % width <4){
     if(isRightSide()){
       currentPosition += 1;
@@ -146,6 +157,32 @@ function rotationBug(p){
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ///FIX ROTATION OF TETROMINOS A THE EDGE 
 /* function isAtRight() {
