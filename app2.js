@@ -3,6 +3,7 @@ let containers = document.querySelectorAll('.tetris-parent div');
 let width = 10;
 let currentPosition = 4;
 let currentRotation = 0;
+let nextRandom = 0 ;
 let button = document.querySelector('.button-section button')
 
 // lTetromino 
@@ -90,10 +91,14 @@ function control(e){
 function freeze(){
   if(current.some(index=>containers[index + width + currentPosition].classList.contains('taken'))){
     current.forEach(index=>containers[index + currentPosition].classList.add('taken'));
-    random = Math.floor(Math.random() * tetromino.length);
+    
+    random = nextRandom;
+    nextRandom = Math.floor(Math.random() * tetromino.length);
     current = tetromino[random][currentRotation];
     currentPosition  = 4;
+    showDisplay();
     draw();
+    console.log(nextRandom);
   }
 }
 
@@ -163,9 +168,29 @@ function rotationBug(p){
   }
 }
 
+// mini display
+
+let displaySquares = document.querySelectorAll('.mini-grid div');
+let displaySquare = Array.from(displaySquares);
+let displayWidth = 4;
+let displayCurrentPosition = 0;
+
+const upNextTetromino = [
+  [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+  [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+  [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+  [0, 1, displayWidth, displayWidth + 1], // O tetromino
+  [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+] 
 
 
 
+
+function showDisplay(){
+  displaySquares.forEach(index=>index.classList.remove('blue'));
+  
+  upNextTetromino[nextRandom].forEach(index=>displaySquares[index + displayWidth].classList.add('blue'));
+}
 
 
 
