@@ -109,9 +109,19 @@ function moveRight(){
 function rotate(){
     unDraw();
     currentRotation++;
-    if(currentRotation >= current.length){
+    if(currentRotation === current.length){
         currentRotation = 0;
-    }
+    }  
+
     current = tetrominos[random][currentRotation];
-    draw();
+    if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        --currentRotation;
+        if(currentRotation<0) {
+            ++currentRotation;
+        }
+        current = tetrominos[random][currentRotation];
+        draw();
+    }else{
+        draw();
+    }  
 }
