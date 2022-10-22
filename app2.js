@@ -129,6 +129,9 @@ function rotate(){
     rotationBug();
   if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
     --currentRotation;
+    if(currentRotation<0){
+      ++currentRotation;
+    }
     current = tetromino[random][currentRotation];
     rotationBug();
     draw();
