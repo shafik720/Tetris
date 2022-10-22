@@ -107,16 +107,6 @@ function moveRight(){
 
 function rotate(){
     
-  // if(!(current.some(index=>containers[currentPosition + index].classList.contains('taken')))){
-  //   unDraw();
-  // currentRotation++;
-  // if(currentRotation>=current.length){
-  //   currentRotation = 0;
-  // }
-  //   current = tetromino[random][currentRotation];
-  //   draw();
-  // }
-  let x = currentRotation;
   unDraw();
   currentRotation++;
   if(currentRotation>=current.length){
