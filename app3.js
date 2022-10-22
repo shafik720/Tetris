@@ -62,7 +62,14 @@ function moveDown(){
     draw();
     freeze();
 }
-
+document.addEventListener('keydown', control);
+function control(e){
+    if(e.keyCode == 37){
+        moveLeft();
+    }else if(e.keyCode == 39){
+        moveRight();
+    }
+}
 function freeze(){
     if(current.some(index=>squares[currentPosition + index + width].classList.contains('taken'))){
         current.forEach(index=>squares[currentPosition + index].classList.add('taken'));
@@ -72,4 +79,26 @@ function freeze(){
         currentPosition = 4;
         draw();
     }
+}
+
+function moveLeft(){
+    unDraw();
+    let isLeft = current.some(index=>(currentPosition + index) % width === 0);
+    if(!isLeft) currentPosition -= 1;
+
+    if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        currentPosition += 1;
+    }
+    draw();
+}
+
+function moveRight(){
+    unDraw();
+    const isRight = current.some(index=>(currentPosition + index) % width === width-1);
+    if(!isRight) currentPosition += 1;
+
+    if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        currentPosition -= 1;
+    }
+    draw();
 }
