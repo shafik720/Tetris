@@ -117,12 +117,10 @@ function rotate(){
 
     current = tetrominos[random][currentRotation];
     if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
-        console.log(random);
         if(random==3){
             console.log('ok first');
             if(current.some(index=>squares[index + currentPosition +1].classList.contains('taken'))){
                 currentPosition -= 1;  
-                console.log('ok final');
             }
         }
         --currentRotation;
