@@ -61,7 +61,7 @@ button.addEventListener('click',()=>{
   if(timeId){
     clearInterval(timeId);
     timeId = null;
-  }else if(!timeId){
+  }else if(!timeId){    
     timeId = setInterval(moveDown,500);
   }
   
