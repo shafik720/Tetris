@@ -41,7 +41,6 @@ const lTetromino = [
     [1, width + 1, width * 2 + 1, width * 3 + 1],
     [width, width + 1, width + 2, width + 3]
   ]
-
 let tetrominos = [lTetromino,zTetromino,oTetromino,tTetromino,iTetromino];
 let random = Math.floor(Math.random() * tetrominos.length);
 let current = tetrominos[random][currentRotation];
@@ -70,6 +69,8 @@ function control(e){
         moveDown();        
     }else if(e.keyCode == 39){
         moveRight();
+    }else if(e.keyCode == 38){
+        rotate();
     }
 }
 function freeze(){
@@ -105,6 +106,12 @@ function moveRight(){
     draw();
 }
 
-// function rotate(){
-//     currentRotation++;
-// }
+function rotate(){
+    unDraw();
+    currentRotation++;
+    if(currentRotation >= current.length){
+        currentRotation = 0;
+    }
+    current = tetrominos[random][currentRotation];
+    draw();
+}
