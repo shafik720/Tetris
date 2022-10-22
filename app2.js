@@ -57,6 +57,7 @@ function unDraw(){
 let timeId;
 
 button.addEventListener('click',()=>{
+  showDisplay();
   if(timeId){
     clearInterval(timeId);
     timeId = null;
