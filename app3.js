@@ -88,6 +88,7 @@ function freeze(){
         currentPosition = 4;
         showDisplay();
         draw();
+        gameOver()
     }
 }
 
@@ -194,6 +195,7 @@ start.addEventListener('click',()=>{
 
 
 // --------- clearing lane when matched 
+let score = 0;
 function clearLane(){
     for(let i=0; i<199; i+=width){
         let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8,  i+9];
@@ -205,6 +207,16 @@ function clearLane(){
             let squareRemoved = squares.splice(i, width);
             squares = squareRemoved.concat(squares);
             squares.forEach(index=>grid.appendChild(index));
+
+            score += 10;
+            document.querySelector('.score').innerText = score;
         }
+    }
+}
+
+function gameOver(){
+    if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+        clearInterval(timeId);
+        document.querySelector('.score').innerText = 'Game over';
     }
 }
