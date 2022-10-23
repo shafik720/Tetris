@@ -107,14 +107,12 @@ function moveRight(){
     draw();
 }
 
-function rotate(){
-    
+function rotate(){    
     unDraw();
     currentRotation++;
     if(currentRotation === current.length){
         currentRotation = 0;
     }  
-
     current = tetrominos[random][currentRotation];
     if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
         if(random==3){
@@ -127,8 +125,32 @@ function rotate(){
         ++currentRotation;
         }
         current = tetrominos[random][currentRotation];
+        rotationBug();
         draw();
     }else{
+        rotationBug();
         draw();
     }  
+}
+
+function isRightSide(){
+    return current.some(index => (currentPosition + index + 1) % width ===0);
+}
+function isLeftSide(){
+    return current.some(index=>(currentPosition + index) % width === 0);
+}
+
+function rotationBug(p){
+    p = currentPosition;
+    if((p + 1)% width < 4 ){
+        if(isRightSide()){
+            currentPosition += 1;
+            rotationBug(p);
+        }
+    }else if(p % width >5){
+        if(isLeftSide()){
+            currentPosition -= 1;
+            rotationBug(p);
+        }
+    }
 }
