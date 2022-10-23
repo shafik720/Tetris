@@ -5,6 +5,8 @@ squares = Array.from(document.querySelectorAll('.tetris-parent div')),
 width = 10,
 nextRandom = 0,
 timeId,
+scoreDiv = document.querySelector('.score'),
+score = 0,
 currentRotation = 0;
 
 counter = 0;
@@ -222,7 +224,8 @@ function addScore(){
       const squaresRemoved = squares.splice(i,width);
       squares = squaresRemoved.concat(squares);
       squares.forEach(index=>grid.appendChild(index));
-    }
-    
+      score += 10;
+      scoreDiv.innerText = score;
+    }    
   }
 }
