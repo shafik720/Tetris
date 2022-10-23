@@ -160,3 +160,4 @@ function rotationBug(p){
 let displaySquares = document.querySelectorAll('.mini-grid div');
 let displayWidth = 4 ;
 let displayCurrentPosition = 0;
+
