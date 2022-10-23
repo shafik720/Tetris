@@ -106,7 +106,8 @@ function freeze(){
         current = theTetrominoes[randomPosition][currentRotation];
         currentPosition = 4 ;
         draw();
-        displayShape();
+        displayShape();        
+        gameOver()
     }
 }
 
@@ -227,5 +228,12 @@ function addScore(){
       score += 10;
       scoreDiv.innerText = score;
     }    
+  }
+}
+
+function gameOver(){
+  if(current.some(index=>squares[currentPosition + index].classList.contains('taken'))){
+    scoreDiv.innerText = 'End';
+    clearInterval(timeId);
   }
 }
