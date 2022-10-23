@@ -189,3 +189,9 @@ start.addEventListener('click',()=>{
         showDisplay();
     }
 })
+
+
+// --------- clearing lane when matched 
+function clearLane(){
+    
+}
