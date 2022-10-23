@@ -3,6 +3,7 @@
 let squares = document.querySelectorAll('.tetris-parent div'),
 width = 10,
 currentPosition = 4 ,
+nextRandom = 0,
 currentRotation = 0
 ;
 
@@ -34,22 +35,21 @@ const lTetromino = [
     [0, 1, width, width + 1],
     [0, 1, width, width + 1]
   ]
-
   const iTetromino = [
     [1, width + 1, width * 2 + 1, width * 3 + 1],
     [width, width + 1, width + 2, width + 3],
     [1, width + 1, width * 2 + 1, width * 3 + 1],
     [width, width + 1, width + 2, width + 3]
   ]
-let tetrominos = [lTetromino,zTetromino,oTetromino,tTetromino,iTetromino];
+
+let tetrominos = [lTetromino,zTetromino,tTetromino, oTetromino,iTetromino];
 let random = Math.floor(Math.random() * tetrominos.length);
 let current = tetrominos[random][currentRotation];
 
 function draw(){    
     current.forEach(index=>squares[currentPosition + index].classList.add('blue'))
 }
-function unDraw(){
-    
+function unDraw(){    
     current.forEach(index=>squares[currentPosition + index].classList.remove('blue'));
 }
 draw();
@@ -78,9 +78,11 @@ function freeze(){
     if(current.some(index=>squares[currentPosition + index + width].classList.contains('taken'))){
         current.forEach(index=>squares[currentPosition + index].classList.add('taken'));
 
-        random = Math.floor(Math.random() * tetrominos.length);
+        random = nextRandom;
+        nextRandom = Math.floor(Math.random() * tetrominos.length);
         current = tetrominos[random][currentRotation];
         currentPosition = 4;
+        showDisplay();
         draw();
     }
 }
@@ -161,3 +163,16 @@ let displaySquares = document.querySelectorAll('.mini-grid div');
 let displayWidth = 4 ;
 let displayCurrentPosition = 0;
 
+const upNextTetromino = [
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+    [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+    [0, 1, displayWidth, displayWidth + 1], // O tetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+  ] 
+
+function showDisplay(){
+    displaySquares.forEach(index=>index.classList.remove('blue'));
+
+    upNextTetromino[nextRandom].forEach(index=>displaySquares[displayCurrentPosition + index].classList.add('blue'));
+}
