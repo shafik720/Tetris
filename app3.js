@@ -120,7 +120,7 @@ function rotate(){
         if(random==3){
             if(current.some(index=>squares[index + currentPosition +1].classList.contains('taken'))){
                 currentPosition -= 1;  
-            }
+            } // ---------- solution for bug 
         }
         --currentRotation;
         if(currentRotation<0) {
