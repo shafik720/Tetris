@@ -1,7 +1,7 @@
 
 
-let square = document.querySelector('.tetris-parent'),
-squares = square.querySelectorAll('div'),
+let grid = document.querySelector('.tetris-parent'),
+squares = Array.from(document.querySelectorAll('.tetris-parent div')),
 width = 10,
 nextRandom = 0,
 timeId,
@@ -91,6 +91,7 @@ function moveDown(){
     currentPosition += width;
     draw();
     freeze();
+    addScore();
 }
 // ---------------------------- freeze function -------------
 function freeze(){
@@ -208,5 +209,20 @@ function isAtLeft() {
       currentPosition -= 1;
       checkRotatedPosition(P);
     }
+  }
+}
+
+
+function addScore(){
+  for(let i=0; i<=199; i+=width){
+    let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8,  i+9];
+    if(row.every(index=>squares[index].classList.contains('taken'))){
+      row.forEach(index=>squares[index].classList.remove('taken'));
+      row.forEach(index=>squares[index].classList.remove('tetromino'));
+      const squaresRemoved = squares.splice(i,width);
+      squares = squaresRemoved.concat(squares);
+      squares.forEach(index=>grid.appendChild(index));
+    }
+    
   }
 }
