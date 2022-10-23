@@ -4,6 +4,8 @@ let squares = document.querySelectorAll('.tetris-parent div'),
 width = 10,
 currentPosition = 4 ,
 nextRandom = 0,
+timeId,
+startBtn = document.querySelector('#start'),
 currentRotation = 0
 ;
 
@@ -52,9 +54,9 @@ function draw(){
 function unDraw(){    
     current.forEach(index=>squares[currentPosition + index].classList.remove('blue'));
 }
-draw();
 
-let timeId = setInterval(moveDown,400);
+
+
 
 function moveDown(){
     unDraw();
@@ -176,3 +178,14 @@ function showDisplay(){
 
     upNextTetromino[nextRandom].forEach(index=>displaySquares[displayCurrentPosition + index].classList.add('blue'));
 }
+
+start.addEventListener('click',()=>{
+    if(timeId){        
+        clearInterval(timeId);
+        timeId = null;
+    }else{
+        draw();
+        timeId = setInterval(moveDown,400);
+        showDisplay();
+    }
+})
