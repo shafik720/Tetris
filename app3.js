@@ -1,6 +1,7 @@
 
 
-let squares = document.querySelectorAll('.tetris-parent div'),
+let squares = Array.from(document.querySelectorAll('.tetris-parent div')),
+grid = document.querySelector('.tetris-parent'),
 width = 10,
 currentPosition = 4 ,
 nextRandom = 0,
@@ -63,6 +64,7 @@ function moveDown(){
     currentPosition += width;
     draw();
     freeze();
+    clearLane();
 }
 document.addEventListener('keydown', control);
 function control(e){
@@ -196,7 +198,13 @@ function clearLane(){
     for(let i=0; i<199; i+=width){
         let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8,  i+9];
         if(row.every(index=>squares[index].classList.contains('taken'))){
-            
+            row.forEach(index=>{
+                squares[index].classList.remove('taken');
+                squares[index].classList.remove('blue');
+            })
+            let squareRemoved = squares.splice(i, width);
+            squares = squareRemoved.concat(squares);
+            squares.forEach(index=>grid.appendChild(index));
         }
     }
 }
