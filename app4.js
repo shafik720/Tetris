@@ -63,6 +63,14 @@ const moveDown =()=>{
 
 let timer = setInterval(moveDown,400);
 
+document.addEventListener('keydown',moveTetromino);
+
+function moveTetromino(e){
+    if(e.keyCode === 37){
+        moveLeft();
+    }
+}
+
 
 const freeze =()=>{
     if(present.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
@@ -72,4 +80,12 @@ const freeze =()=>{
         present = allTetromino[random][currentRotation];
         draw();
     }
+}
+
+const moveLeft =()=>{
+    unDraw();
+    let isLeft = present.some(index=>(currentPosition + index) % width === 0);
+
+    if(!isLeft) currentPosition -= 1;
+    draw();
 }
