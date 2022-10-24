@@ -89,6 +89,7 @@ const freeze =()=>{
         draw();
         showDisplay();
         gameScore();
+        finishGame();
     }
 }
 
@@ -208,4 +209,11 @@ function gameScore(){
             document.querySelector('.score').innerText = score;
         }
     }
+}
+
+function finishGame(){
+    if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+        clearInterval(timer);
+        document.querySelector('.score').innerText = 'Game Over';
+    }    
 }
