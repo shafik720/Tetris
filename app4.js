@@ -3,6 +3,7 @@ let grid = document.querySelector('.tetris-parent'),
 containers = Array.from(document.querySelectorAll('.tetris-parent div')),
 width = 10,
 currentRotation = 0,
+nextRandom = 0,
 currentPosition = 4 
 ;
 
@@ -82,10 +83,11 @@ const freeze =()=>{
     if(present.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
         present.forEach(index=>containers[currentPosition + index].classList.add('taken'));
         currentPosition = 4;
-        random = Math.floor(Math.random() * allTetromino.length);
+        random = nextRandom;
+        nextRandom = Math.floor(Math.random() * allTetromino.length);
         present = allTetromino[random][currentRotation];
         draw();
-        console.log(random);
+        showDisplay();
     }
 }
 
@@ -164,10 +166,16 @@ let displaySquares = document.querySelectorAll('.mini-grid div'),
 displayWidth = 4,
 displayCurrentPosition = 0;
 
-const upNextTetromino = [
+const miniTetro = [
     [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
     [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
     [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
     [0, 1, displayWidth, displayWidth + 1], // O tetromino
     [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
   ] 
+
+function showDisplay(){
+    displaySquares.forEach(index=>index.classList.remove('blue'));
+
+    miniTetro[nextRandom].forEach(index=>displaySquares[displayCurrentPosition + index].classList.add('blue'));
+}
