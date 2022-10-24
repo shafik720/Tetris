@@ -72,6 +72,8 @@ function moveTetromino(e){
         moveRight();
     }else if(e.keyCode === 38){
         rotate();
+    }else if(e.keyCode === 40){
+        moveDown();
     }
 }
 
