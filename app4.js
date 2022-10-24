@@ -70,6 +70,8 @@ function moveTetromino(e){
         moveLeft();
     }else if(e.keyCode === 39){
         moveRight();
+    }else if(e.keyCode === 38){
+        rotate();
     }
 }
 
@@ -97,5 +99,16 @@ function moveRight(){
     let isRight = present.some(index=>(currentPosition + index) % width === width-1);
     
     if(!isRight) currentPosition += 1;
+    draw();
+}
+
+function rotate(){
+    unDraw();
+    currentRotation++;
+
+    if(currentRotation == present.length){
+        currentRotation = 0;
+    }    
+    present = allTetromino[random][currentRotation];
     draw();
 }
