@@ -1,5 +1,6 @@
 
-let containers = document.querySelectorAll('.tetris-parent div');
+let grid = document.querySelector('.tetris-parent');
+let containers = Array.from(document.querySelectorAll('.tetris-parent div'));
 let width = 10;
 let currentPosition = 4;
 let currentRotation = 0;
@@ -72,6 +73,7 @@ function moveDown(){
   currentPosition += width;
   draw();
   freeze();
+  addScore()
 }
 
 document.addEventListener('keydown', control);
@@ -99,7 +101,6 @@ function freeze(){
     currentPosition  = 4;
     showDisplay();
     draw();
-    console.log(nextRandom);
   }
 }
 
@@ -194,8 +195,22 @@ function showDisplay(){
 }
 
 
+let score = 0;
+function addScore(){
+  for(let i=0; i<199; i+=width){
+    let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8,  i+9];
+    if(row.every(index=>containers[index].classList.contains('taken'))){
+      row.forEach(index=>{
+        containers[index].classList.remove('taken');
+        containers[index].classList.remove('blue');
+      })
+      let squareRemoved = containers.splice(i, width);
+      containers = squareRemoved.concat(containers);
 
-
+      containers.forEach(index=>grid.appendChild(index));
+    }
+  }
+}
 
 
 
