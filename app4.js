@@ -199,6 +199,10 @@ function gameScore(){
                 containers[index].classList.remove('taken');
                 containers[index].classList.remove('blue');
             })
+            let squareRemoved = containers.splice(i, width);
+            containers = squareRemoved.concat(containers);
+
+            containers.forEach(index=>grid.appendChild(index));
         }
     }
 }
