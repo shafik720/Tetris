@@ -118,6 +118,14 @@ function rotate(){
         currentRotation = 0;
     }    
     present = allTetromino[random][currentRotation];
+    if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){        
+        if(currentRotation<=0){
+            currentRotation == 0;
+        }else{
+            --currentRotation;
+        }
+    }
+    present = allTetromino[random][currentRotation];
     rotationBug();
     draw();
 }
