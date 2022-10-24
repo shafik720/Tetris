@@ -190,7 +190,7 @@ function gameStart(){
         timer = setInterval(moveDown, 400);
     }
 }
-
+let score = 0;
 function gameScore(){
     for(let i=0; i<199; i+=width){
         let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8,  i+9];
@@ -203,6 +203,9 @@ function gameScore(){
             containers = squareRemoved.concat(containers);
 
             containers.forEach(index=>grid.appendChild(index));
+            
+            score += 10;
+            document.querySelector('.score').innerText = score;
         }
     }
 }
