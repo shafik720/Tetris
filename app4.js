@@ -89,3 +89,7 @@ const moveLeft =()=>{
     if(!isLeft) currentPosition -= 1;
     draw();
 }
+
+function moveRight(){
+    
+}
