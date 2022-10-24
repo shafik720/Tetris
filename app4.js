@@ -62,7 +62,7 @@ const moveDown =()=>{
     freeze();
 }
 
-let timer = setInterval(moveDown,400);
+let timer ;
 
 document.addEventListener('keydown',moveTetromino);
 
@@ -178,4 +178,14 @@ function showDisplay(){
     displaySquares.forEach(index=>index.classList.remove('blue'));
 
     miniTetro[nextRandom].forEach(index=>displaySquares[displayCurrentPosition + index].classList.add('blue'));
+}
+
+function gameStart(){
+    showDisplay();
+    if(timer){
+        clearInterval(timer);
+        timer = null;
+    }else{
+        timer = setInterval(moveDown, 400);
+    }
 }
