@@ -58,13 +58,18 @@ const moveDown =()=>{
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
 }
 
 let timer = setInterval(moveDown,400);
 
 
 const freeze =()=>{
-    if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
-        
+    if(present.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
+        present.forEach(index=>containers[currentPosition + index].classList.add('taken'));
+        currentPosition = 4;
+        random = Math.floor(Math.random() * allTetromino.length);
+        present = allTetromino[random][currentRotation];
+        draw();
     }
 }
