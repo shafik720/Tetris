@@ -120,3 +120,10 @@ function rotate(){
     present = allTetromino[random][currentRotation];
     draw();
 }
+
+function isLeftEdge(){
+    return present.some(index=>(currentPosition + index) % width === 0);
+}
+function isRightEdge(){
+    return 
+}
