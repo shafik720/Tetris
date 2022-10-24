@@ -85,6 +85,7 @@ const freeze =()=>{
         random = Math.floor(Math.random() * allTetromino.length);
         present = allTetromino[random][currentRotation];
         draw();
+        console.log(random);
     }
 }
 
@@ -123,6 +124,12 @@ function rotate(){
             currentRotation == 0;
         }else{
             --currentRotation;
+        }
+
+        if(random == 2){
+            if(present.some(index=>containers[currentPosition + index +1].classList.contains('taken'))){
+                currentPosition -=1;
+            }
         }
     }
     present = allTetromino[random][currentRotation];
