@@ -206,8 +206,10 @@ function addScore(){
       })
       let squareRemoved = containers.splice(i, width);
       containers = squareRemoved.concat(containers);
-
       containers.forEach(index=>grid.appendChild(index));
+
+      score += 10;
+      document.querySelector('.score').innerText = score;
     }
   }
 }
