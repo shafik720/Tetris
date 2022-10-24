@@ -93,6 +93,9 @@ const moveLeft =()=>{
     let isLeft = present.some(index=>(currentPosition + index) % width === 0);
 
     if(!isLeft) currentPosition -= 1;
+    if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+        currentPosition += 1;
+    }
     draw();
 }
 
@@ -101,6 +104,9 @@ function moveRight(){
     let isRight = present.some(index=>(currentPosition + index) % width === width-1);
     
     if(!isRight) currentPosition += 1;
+    if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+        currentPosition -= 1;
+    }
     draw();
 }
 
