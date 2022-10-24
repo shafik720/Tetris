@@ -128,6 +128,17 @@ function isRightEdge(){
     return present.some(index=>(currentPosition + index + 1) % width ===0);
 }
 
-function rotationBug(){
-    
+function rotationBug(p){
+    p = currentPosition;
+    if((p + 1) % width < 4){
+        if(isRightEdge){
+            currentPosition += 1;
+            rotationBug(p);
+        }
+    }else if(p % width > 5){
+        if(isLeftEdge){
+            currentPosition -= 1;
+            rotationBug(p);
+        }
+    }
 }
