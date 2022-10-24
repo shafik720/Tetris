@@ -158,3 +158,16 @@ function rotationBug(p){
         }
     }
 }
+
+
+let displaySquares = document.querySelectorAll('.mini-grid div'),
+displayWidth = 4,
+displayCurrentPosition = 0;
+
+const upNextTetromino = [
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+    [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+    [0, 1, displayWidth, displayWidth + 1], // O tetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+  ] 
