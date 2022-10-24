@@ -101,6 +101,7 @@ function freeze(){
     currentPosition  = 4;
     showDisplay();
     draw();
+    gameOver();
   }
 }
 
@@ -214,7 +215,12 @@ function addScore(){
   }
 }
 
-
+function gameOver(){
+  if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+    clearInterval(timeId);
+    document.querySelector('.score').innerText = "End";
+  }
+}
 
 
 
