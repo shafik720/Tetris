@@ -125,5 +125,9 @@ function isLeftEdge(){
     return present.some(index=>(currentPosition + index) % width === 0);
 }
 function isRightEdge(){
-    return 
+    return present.some(index=>(currentPosition + index + 1) % width ===0);
+}
+
+function rotationBug(){
+    
 }
