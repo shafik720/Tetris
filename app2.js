@@ -49,7 +49,6 @@ let current = tetromino[random][currentRotation];
 function draw(){
   current.forEach(index=>containers[currentPosition + index].classList.add('blue'));
 }
-draw();
 function unDraw(){
   current.forEach(index=>containers[currentPosition + index].classList.remove('blue'));
 }
@@ -57,6 +56,7 @@ function unDraw(){
 let timeId;
 
 button.addEventListener('click',()=>{
+  draw();
   showDisplay();
   if(timeId){
     clearInterval(timeId);
