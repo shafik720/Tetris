@@ -47,5 +47,24 @@ let random = Math.floor(Math.random() * allTetromino.length);
 let present = allTetromino[random][currentRotation];
 
 const draw = () =>{
-    
+    present.forEach(index=>containers[currentPosition + index].classList.add('blue'));
+}
+const unDraw =()=>{
+    present.forEach(index=>containers[currentPosition + index].classList.remove('blue'));
+}
+draw();
+
+const moveDown =()=>{
+    unDraw();
+    currentPosition += width;
+    draw();
+}
+
+let timer = setInterval(moveDown,400);
+
+
+const freeze =()=>{
+    if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+        
+    }
 }
