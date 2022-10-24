@@ -68,6 +68,8 @@ document.addEventListener('keydown',moveTetromino);
 function moveTetromino(e){
     if(e.keyCode === 37){
         moveLeft();
+    }else if(e.keyCode === 39){
+        moveRight();
     }
 }
 
@@ -91,5 +93,9 @@ const moveLeft =()=>{
 }
 
 function moveRight(){
+    unDraw();
+    let isRight = present.some(index=>(currentPosition + index) % width === width-1);
     
+    if(!isRight) currentPosition += 1;
+    draw();
 }
