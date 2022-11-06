@@ -132,3 +132,12 @@ function rotate(){
     current = nextTetromino[random][currentRotation];
     draw();
 }
+
+function isLeftEdge(){
+    return current.some(index=>(index+currentPosition) % width === 0);
+}
+
+function rotationBug(p){
+    p = currentPosition;
+    
+}
