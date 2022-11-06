@@ -69,6 +69,8 @@ function control(e){
         moveDown();
     }else if(e.keyCode === 39){
         moveRight();
+    }else if(e.keyCode === 38){
+        rotate();
     }
 }
 
@@ -113,5 +115,6 @@ function rotate(){
     if(currentRotation>=current.length){
         currentRotation = 0;
     }
-    
+    current = nextTetromino[random][currentRotation];
+    draw();
 }
