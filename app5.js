@@ -63,6 +63,12 @@ function moveDown(){
 
 function freeze(){
     if(current.some(index=>containers[width + currentPosition + index].classList.contains('taken'))){
-        console.log('ok go');
+        current.forEach(index=>{
+            containers[currentPosition + index].classList.add('taken');
+        });
+        currentPosition = 4 ;
+        random = Math.floor(Math.random() * nextTetromino.length);
+        current = nextTetromino[random][currentRotation];
+        draw();
     }
 }
