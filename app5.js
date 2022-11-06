@@ -109,5 +109,9 @@ function moveRight(){
 
 function rotate(){
     unDraw();
+    currentRotation++;
+    if(currentRotation>=current.length){
+        currentRotation = 0;
+    }
     
 }
