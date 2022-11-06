@@ -49,7 +49,7 @@ function draw(){
     current.forEach(index=>containers[currentPosition  + index].classList.add('blue'));
 }
 draw();
-let x = setInterval(moveDown,400);
+let x = setInterval(moveDown,300);
 function unDraw(){
     current.forEach(index=>containers[currentPosition  + index].classList.remove('blue'));
 }
@@ -85,6 +85,9 @@ function moveLeft(){
     let isLeft = current.some(index=>(index + currentPosition) % width === 0);
     if(!isLeft){
         currentPosition -= 1;
+    }
+    if(current.some(index=>containers[index+currentPosition].classList.contains('blue'))){
+        currentPosition += 1;
     }
     draw();
 }
