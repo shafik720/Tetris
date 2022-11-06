@@ -61,6 +61,13 @@ function moveDown(){
     freeze();
 }
 
+document.addEventListener('keydown', control);
+function control(e){
+    if(e.keyCode ===37){
+        moveLeft();
+    }
+}
+
 function freeze(){
     if(current.some(index=>containers[width + currentPosition + index].classList.contains('taken'))){
         current.forEach(index=>{
@@ -76,5 +83,8 @@ function freeze(){
 function moveLeft(){
     unDraw();
     let isLeft = current.some(index=>(index + currentPosition) % width === 0);
-    if()
+    if(!isLeft){
+        currentPosition -= 1;
+        draw();
+    }
 }
