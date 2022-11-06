@@ -101,5 +101,8 @@ function moveRight(){
     if(!isRight){
         currentPosition += 1;
     }
+    if(current.some(index=>containers[index + currentPosition].classList.contains('blue'))){
+        currentPosition -= 1;
+    }
     draw();
 }
