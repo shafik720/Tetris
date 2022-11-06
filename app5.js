@@ -72,3 +72,9 @@ function freeze(){
         draw();
     }
 }
+
+function moveLeft(){
+    unDraw();
+    let isLeft = current.some(index=>(index + currentPosition) % width === 0);
+    if()
+}
