@@ -46,6 +46,16 @@ let currentRotation = 0 ;
 let current = nextTetromino[random][currentRotation];
 
 function draw(){
-    current.forEach(index=>containers[currentPosition + width + index].classList.add('blue'));
+    current.forEach(index=>containers[currentPosition  + index].classList.add('blue'));
+}
+draw();
+let x = setInterval(moveDown,400);
+function unDraw(){
+    current.forEach(index=>containers[currentPosition  + index].classList.remove('blue'));
 }
 
+function moveDown(){
+    unDraw();
+    currentPosition += width;
+    draw();
+}
