@@ -137,10 +137,18 @@ function rotate(){
 function isLeftEdge(){
     return current.some(index=>(index+currentPosition) % width === 0);
 }
+function isRightEdge(){
+    return current.some(index=>(index+currentPosition+1) % width ===0);
+}
 
 function rotationBug(p){
     p = currentPosition;
-    if(p % width > 5 ){
+    if((p+1) % width < 4 ){
+        if(isRightEdge()){
+            currentPosition +=1;
+            rotationBug(p);
+        }
+    }else if(p % width > 5 ){
         if(isLeftEdge()){
             currentPosition -=1;
             rotationBug(p);
