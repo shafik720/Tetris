@@ -44,3 +44,8 @@ let nextTetromino = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 let random = Math.floor(Math.random() * nextTetromino.length)
 let currentRotation = 0 ;
 let current = nextTetromino[random][currentRotation];
+
+function draw(){
+    current.forEach(index=>containers[currentPosition + width + index].classList.add('blue'));
+}
+
