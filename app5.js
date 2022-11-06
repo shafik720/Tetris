@@ -85,6 +85,10 @@ function moveLeft(){
     let isLeft = current.some(index=>(index + currentPosition) % width === 0);
     if(!isLeft){
         currentPosition -= 1;
-        draw();
     }
+    draw();
+}
+function moveRight(){
+    unDraw();
+    // const isRight=;
 }
