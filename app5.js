@@ -58,4 +58,11 @@ function moveDown(){
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
+}
+
+function freeze(){
+    if(current.some(index=>containers[width + currentPosition + index].classList.contains('taken'))){
+        console.log('ok go');
+    }
 }
