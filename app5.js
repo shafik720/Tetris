@@ -65,8 +65,10 @@ document.addEventListener('keydown', control);
 function control(e){
     if(e.keyCode ===37){
         moveLeft();
-    }if(e.keyCode === 40){
+    }else if(e.keyCode === 40){
         moveDown();
+    }else if(e.keyCode === 39){
+        moveRight();
     }
 }
 
@@ -95,5 +97,9 @@ function moveLeft(){
 }
 function moveRight(){
     unDraw();
-    // const isRight=;
+    const isRight= current.some(index=>(currentPosition + index) % width === width-1);
+    if(!isRight){
+        currentPosition += 1;
+    }
+    draw();
 }
