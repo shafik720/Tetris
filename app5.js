@@ -106,3 +106,8 @@ function moveRight(){
     }
     draw();
 }
+
+function rotate(){
+    unDraw();
+    
+}
