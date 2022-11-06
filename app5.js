@@ -130,6 +130,7 @@ function rotate(){
         }
     }
     current = nextTetromino[random][currentRotation];
+    rotationBug();
     draw();
 }
 
@@ -139,5 +140,10 @@ function isLeftEdge(){
 
 function rotationBug(p){
     p = currentPosition;
-    
+    if(p % width > 5 ){
+        if(isLeftEdge()){
+            currentPosition -=1;
+            rotationBug(p);
+        }
+    }
 }
