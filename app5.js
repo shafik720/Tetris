@@ -109,3 +109,6 @@ function moveRight(){
     }
     draw();
 }
+function rotation(){
+    currentRotation++;
+}
