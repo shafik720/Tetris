@@ -110,5 +110,18 @@ function moveRight(){
     draw();
 }
 function rotation(){
+    unDraw();
     currentRotation++;
+    if(currentRotation === current.length){
+        currentRotation = 0;
+    }
+    current = nextTetromino[random][currentRotation];
+    if(current.some(index=>grid[currentPosition + index].classList.contains('taken'))){
+        --currentRotation;
+        if(currentRotation<0){
+            currentRotation = 0;
+        }
+    }
+    current = nextTetromino[random][currentRotation];
+    draw();
 }
