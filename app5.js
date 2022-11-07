@@ -1,12 +1,13 @@
-let grid = Array.from(document.querySelectorAll('.tetris-parent div')),
-width = 10,
-nextRandom = 0;
-currentRotation  = 0,
-currentPosition = 4;
+let grid    = Array.from(document.querySelectorAll('.tetris-parent div')),
+width       = 10,
+timer,
+nextRandom  = 0,
+currentRotation     = 0,
+currentPosition     = 4;
 
 
 // lTetromino 
-const lTetromino = [
+const lTetromino    = [
     [1, width + 1, width * 2 + 1, 2],
     [width, width + 1, width + 2, width * 2 + 2],
     [1, width + 1, width * 2 + 1, width * 2],
@@ -45,7 +46,7 @@ let nextTetromino = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 let random = Math.floor(Math.random() * nextTetromino.length);
 let current = nextTetromino[random][currentRotation];
 
-let x = setInterval(moveDown,300)
+
 
 function moveDown(){
     unDraw();
@@ -159,7 +160,6 @@ function rotationBug(p){
 
 // mini grid 
 let displaySquares  =   Array.from(document.querySelectorAll('.mini-grid div'));
-let miniRotation    =   0;
 let displayWidth    =   4;
 let miniPosition    =   0;
 
@@ -177,4 +177,14 @@ let displayCurrent   =   miniTetro[nextRandom];
 function displayMini (){
     displaySquares.forEach(index=> index.classList.remove('blue'));
     miniTetro[nextRandom].forEach(index=>displaySquares[index + miniPosition].classList.add('blue'));
+}
+
+// game start pause button
+function gameStart(){
+    if(!timer){
+        timer = setInterval(moveDown,300);
+    }else{
+        clearInterval(timer);
+        timer = null;
+    }
 }
