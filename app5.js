@@ -86,3 +86,15 @@ function moveLeft(){
     }
     draw();
 }
+
+function moveRight(){
+    unDraw();
+    let isRight = current.some(index => (index + currentPosition + 1) % width === 0);
+    if(!isRight){
+        currentPosition +=1;
+    }
+    if(current.some(index=>grid[index + currentPosition].classList.contains('taken'))){
+        currentPosition -= 1;
+    }
+    draw();
+}
