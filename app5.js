@@ -60,3 +60,15 @@ function unDraw(){
     current.forEach(index=>grid[currentPosition + index].classList.remove('blue'));
 }
 draw();
+
+function moveLeft(){
+    unDraw();
+    let isLeft = current.some(index=>(inex + currentPosition) % width == 0 );
+    if(!isLeft){
+        currentPosition -= 1;
+    }
+    if(current.some(index=>grid[index + currentPosition].classList.contains('taken'))){
+        currentPosition += 1;
+    }
+    draw();
+}
