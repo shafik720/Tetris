@@ -50,6 +50,7 @@ function moveDown(){
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
 }
 
 document.addEventListener('keydown', control);
@@ -60,7 +61,7 @@ function control(e){
     }else if(e.keyCode == 38){
 
     }else if(e.keyCode == 39){
-
+        moveRight();
     }else if(e.keyCode == 40){
         moveDown();
     }
@@ -74,6 +75,16 @@ function unDraw(){
     current.forEach(index=>grid[currentPosition + index].classList.remove('blue'));
 }
 draw();
+
+function freeze(){
+    if(current.some(index=> grid[currentPosition + index + width].classList.contains('taken'))){
+        current.forEach(index=>grid[currentPosition + index].classList.add('taken'));
+        currentPosition = 4;
+        random = Math.floor(Math.random() * nextTetromino.length);
+        current = nextTetromino[random][currentRotation];
+        draw();
+    }
+}
 
 function moveLeft(){
     unDraw();
