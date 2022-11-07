@@ -52,6 +52,14 @@ function moveDown(){
     draw();
 }
 
+document.addEventListener('keydown', control);
+
+function control(e){
+    if(e.keyCode == 37){
+        moveLeft();
+    }
+}
+
 function draw(){
     current.forEach(index=>grid[index + currentPosition].classList.add('blue'));
 }
