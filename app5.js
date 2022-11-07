@@ -173,7 +173,7 @@ const miniTetro     =   [
 
 
 let displayCurrent   =   miniTetro[nextRandom];
-
+displayMini();
 function displayMini (){
     displaySquares.forEach(index=> index.classList.remove('blue'));
     miniTetro[nextRandom].forEach(index=>displaySquares[index + miniPosition].classList.add('blue'));
