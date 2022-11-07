@@ -1,5 +1,6 @@
 let grid = Array.from(document.querySelectorAll('.tetris-parent div')),
 width = 10,
+nextRandom = 0;
 currentRotation  = 0,
 currentPosition = 4;
 
@@ -80,9 +81,11 @@ function freeze(){
     if(current.some(index=> grid[currentPosition + index + width].classList.contains('taken'))){
         current.forEach(index=>grid[currentPosition + index].classList.add('taken'));
         currentPosition = 4;
-        random = Math.floor(Math.random() * nextTetromino.length);
+        random = nextRandom;
+        nextRandom = Math.floor(Math.random() * nextTetromino.length);
         current = nextTetromino[random][currentRotation];
         draw();
+        displayMini();
     }
 }
 
@@ -155,6 +158,23 @@ function rotationBug(p){
 }
 
 // mini grid 
-let miniTetromino   =   Array.from(document.querySelectorAll('.mini-grid div'));
+let displaySquares  =   Array.from(document.querySelectorAll('.mini-grid div'));
 let miniRotation    =   0;
+let displayWidth    =   4;
 let miniPosition    =   0;
+
+const miniTetro     =   [
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+    [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+    [0, 1, displayWidth, displayWidth + 1], // O tetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+  ] 
+
+
+let displayCurrent   =   miniTetro[nextRandom];
+
+function displayMini (){
+    displaySquares.forEach(index=> index.classList.remove('blue'));
+    miniTetro[nextRandom].forEach(index=>displaySquares[index + miniPosition].classList.add('blue'));
+}
