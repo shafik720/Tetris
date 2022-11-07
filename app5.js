@@ -153,3 +153,8 @@ function rotationBug(p){
         }
     }
 }
+
+// mini grid 
+let miniTetromino   =   Array.from(document.querySelectorAll('.mini-grid div'));
+let miniRotation    =   0;
+let miniPosition    =   0;
