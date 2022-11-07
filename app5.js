@@ -46,7 +46,11 @@ let current = nextTetromino[random][currentRotation];
 
 let x = setInterval(moveDown,300)
 
-
+function moveDown(){
+    unDraw();
+    currentPosition += width;
+    draw();
+}
 
 function draw(){
     current.forEach(index=>grid[index + currentPosition].classList.add('blue'));
