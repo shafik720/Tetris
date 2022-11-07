@@ -39,3 +39,6 @@ const lTetromino = [
     [width, width + 1, width + 2, width + 3]
   ]
 
+let nextTetromino = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
+let random = Math.floor(Math.random() * nextTetromino.length);
+let current = nextTetromino[random][currentRotation];
