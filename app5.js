@@ -122,6 +122,11 @@ function rotation(){
             currentRotation = 0;
         }
     }
+    if(random==2){
+        if(current.some(index=>grid[currentPosition + index + 1].classList.contains('taken'))){
+            currentPosition -= 1;
+        }
+    }
     current = nextTetromino[random][currentRotation];
     draw();
 }
