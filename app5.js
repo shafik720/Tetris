@@ -71,7 +71,7 @@ draw();
 
 function moveLeft(){
     unDraw();
-    let isLeft = current.some(index=>(inex + currentPosition) % width == 0 );
+    let isLeft = current.some(index=>(index + currentPosition) % width == 0 );
     if(!isLeft){
         currentPosition -= 1;
     }
