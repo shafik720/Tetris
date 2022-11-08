@@ -69,10 +69,23 @@ function control(e){
     }
 }
 
+function freeze(){
+    if(current.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
+        current.forEach(index=>{
+            containers[index + currentPosition].classList.add('taken');
+        })
+        currentPosition = 4;
+        random = Math.floor(Math.random() * tetromino.length);
+        current = tetromino[random][currentRotation];
+        draw();
+    }
+}
+
 function moveDown(){
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
 }
 
 function moveLeft(){
