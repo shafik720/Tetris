@@ -57,10 +57,26 @@ timer = setInterval(moveDown, 300);
 
 document.addEventListener('keydown',control);
 
-function control(){}
+function control(e){
+    if(e.keyCode == 37){
+        moveLeft();
+    }
+}
 
 function moveDown(){
     unDraw();
     currentPosition += width;
+    draw();
+}
+
+function moveLeft(){
+    unDraw();
+    const isLeftSide = current.some(index=>(index + currentPosition) % width === 0);
+    if(!isLeftSide){
+        currentPosition -= 1;
+        if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+            currentPosition += 1 ;
+        }
+    }
     draw();
 }
