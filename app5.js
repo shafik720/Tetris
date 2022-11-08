@@ -45,6 +45,7 @@ let tetromino   =   [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino]
 let random = Math.floor(Math.random() * tetromino.length);
 let current = tetromino[random][currentRotation];
 
+
 function draw(){
     current.forEach(index=>containers[index + currentPosition].classList.add('blue'));
 }
@@ -74,6 +75,11 @@ function freeze(){
         current.forEach(index=>{
             containers[index + currentPosition].classList.add('taken');
         })
+    // if(isExist){
+    //     current.forEach(index=>{
+    //         containers[index + currentPosition].classList.add('taken');
+    //     })
+    // }
         currentPosition = 4;
         random = Math.floor(Math.random() * tetromino.length);
         current = tetromino[random][currentRotation];
@@ -87,15 +93,19 @@ function moveDown(){
     draw();
     freeze();
 }
-
+// const isExist = current.some(index=>containers[index + currentPosition].classList.contains('taken'));
 function moveLeft(){
     unDraw();
     const isLeftSide = current.some(index=>(index + currentPosition) % width === 0);
+    
     if(!isLeftSide){
+        freeze();
         currentPosition -= 1;
         if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
             currentPosition += 1 ;
+            // freeze();
         }
+    
     }
     draw();
 }

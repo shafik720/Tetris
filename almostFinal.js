@@ -92,15 +92,35 @@ const freeze =()=>{
         finishGame();
     }
 }
+function secondFreeze(){
+    if(present.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
+        draw();
+        present.forEach(index=>containers[currentPosition + index].classList.add('taken'));
+        currentPosition = 4;
+        random = nextRandom;
+        nextRandom = Math.floor(Math.random() * allTetromino.length);
+        present = allTetromino[random][currentRotation];
+        draw();
+        showDisplay();
+        gameScore();
+        finishGame();
+    }
+}
 
 const moveLeft =()=>{
     unDraw();
     let isLeft = present.some(index=>(currentPosition + index) % width === 0);
 
-    if(!isLeft) currentPosition -= 1;
+    
+    if(!isLeft) {
+        currentPosition -= 1;     
+    };
     if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
         currentPosition += 1;
     }
+    
+            
+    secondFreeze();   
     draw();
 }
 
@@ -112,6 +132,7 @@ function moveRight(){
     if(present.some(index=>containers[currentPosition + index].classList.contains('taken'))){
         currentPosition -= 1;
     }
+    secondFreeze();   
     draw();
 }
 
@@ -138,6 +159,7 @@ function rotate(){
     }
     present = allTetromino[random][currentRotation];
     rotationBug();
+    secondFreeze();
     draw();
 }
 
