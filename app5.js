@@ -53,6 +53,7 @@ function moveDown(){
     currentPosition += width;
     draw();
     freeze();
+    scoring();
 }
 
 document.addEventListener('keydown', control);
@@ -186,5 +187,15 @@ function gameStart(){
     }else{
         clearInterval(timer);
         timer = null;
+    }
+}
+
+// score and finishing
+function scoring(){
+    for(let i=0; i<199; i+=width){
+        let row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7,i+8,i+9];
+        if(row.every(index=>grid[index].classList.contains('blue'))){
+            row.forEach(index=>grid[index].classList.remove('blue'));
+        }
     }
 }
