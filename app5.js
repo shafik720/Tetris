@@ -52,3 +52,11 @@ function unDraw(){
     current.forEach(index=>containers[index + currentPosition].classList.remove('blue'));
 }
 
+draw();
+timer = setInterval(moveDown, 300);
+
+function moveDown(){
+    unDraw();
+    currentPosition += width;
+    draw();
+}
