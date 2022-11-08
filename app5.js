@@ -1,6 +1,7 @@
 
 let containers  =   Array.from(document.querySelectorAll('.tetris-parent div')),
 width   = 10,
+timer,
 currentPosition = 4,
 currentRotation = 0;
 
@@ -43,4 +44,11 @@ const lTetromino = [
 let tetromino   =   [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
 let random = Math.floor(Math.random() * tetromino.length);
 let current = tetromino[random][currentRotation];
+
+function draw(){
+    current.forEach(index=>containers[index + currentPosition].classList.add('blue'));
+}
+function unDraw(){
+    current.forEach(index=>containers[index + currentPosition].classList.remove('blue'));
+}
 
