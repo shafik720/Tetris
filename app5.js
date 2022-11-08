@@ -60,6 +60,12 @@ document.addEventListener('keydown',control);
 function control(e){
     if(e.keyCode == 37){
         moveLeft();
+    }else if(e.keyCode == 38){
+        
+    }else if(e.keyCode == 39){
+        
+    }else if(e.keyCode == 40){
+        moveDown();
     }
 }
 
