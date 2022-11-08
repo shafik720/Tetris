@@ -55,6 +55,10 @@ function unDraw(){
 draw();
 timer = setInterval(moveDown, 300);
 
+document.addEventListener('keydown',control);
+
+function control(){}
+
 function moveDown(){
     unDraw();
     currentPosition += width;
