@@ -2,6 +2,7 @@
 let grid = document.querySelector('.tetris-parent'),
 wrapper = Array.from(document.querySelectorAll('.tetris-parent div')),
 currentPosition = 4,
+timer ,
 currentRotation = 0,
 width = 10;
 
@@ -43,4 +44,20 @@ const lTetromino = [
 
 let tetromino = [lTetromino, zTetromino, tTetromino, oTetromino, iTetromino];
 let random = Math.floor(Math.random() * tetromino.length);
-let default = tetromino[random][currentRotation];
+let pieces = tetromino[random][currentRotation];
+
+function draw(){
+    pieces.forEach(index=>wrapper[currentPosition + index].classList.add('blue'));
+}
+draw();
+function unDraw(){
+    pieces.forEach(index=>wrapper[currentPosition + index].classList.remove('blue'));
+}
+
+timer = setInterval(moveDown,300);
+
+function moveDown(){
+    unDraw();
+    currentPosition += width;
+    draw();
+}
