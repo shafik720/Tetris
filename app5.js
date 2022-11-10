@@ -179,3 +179,21 @@ function rotation(){
     draw();
 }
 
+
+
+// mini display 
+let displaySquares = Array.from(document.querySelectorAll('.mini-grid div'));
+let displayWidth = 4;
+let displayPosition = 0;
+
+const miniTetro = [
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+    [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+    [0, 1, displayWidth, displayWidth + 1], // O tetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+  ] 
+
+function showMinidisplay(){
+    
+}
