@@ -64,7 +64,7 @@ function control(e){
     }else if(e.keyCode == 38){
         
     }else if(e.keyCode == 39){
-        
+        moveRight();
     }else if(e.keyCode == 40){
         moveDown();
     }
@@ -75,11 +75,7 @@ function freeze(){
         current.forEach(index=>{
             containers[index + currentPosition].classList.add('taken');
         })
-    // if(isExist){
-    //     current.forEach(index=>{
-    //         containers[index + currentPosition].classList.add('taken');
-    //     })
-    // }
+    
         currentPosition = 4;
         random = Math.floor(Math.random() * tetromino.length);
         current = tetromino[random][currentRotation];
@@ -106,6 +102,17 @@ function moveLeft(){
             // freeze();
         }
     
+    }
+    draw();
+}
+function moveRight(){
+    unDraw();
+    let isRight = current.some(index=>(currentPosition + index +1) % width ===0);
+    if(!isRight){
+        currentPosition += 1;
+        if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+            currentPosition -= 1;
+        }
     }
     draw();
 }
