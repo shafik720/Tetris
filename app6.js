@@ -135,7 +135,20 @@ function isRightEdge(){
   return pieces.some(index=>(index + currentPosition + 1) % width === 0 );
 }
 
-function rotationBug(){}
+function rotationBug(p){
+  p = currentPosition;
+  if((p+1) % width <4){
+    if(isRightEdge()){
+      currentPosition += 1;
+      rotationBug(p);
+    }
+  }else if(p % width > 5){
+    if(isLeftEdge()){
+      currentPosition-=1;
+      rotationBug(p);
+    }
+  }
+}
 
 function rotation(){
   unDraw();
@@ -149,8 +162,15 @@ function rotation(){
     if(currentRotation < 0){
       ++currentRotation;
     }
+    if(random == 2){
+      if(currentRotation == 0){
+        currentPosition -= 1;
+      }
+    }
     pieces = tetromino[random][currentRotation];
   }
+  
+  rotationBug();
   secondFreeze();
   draw();
 }
