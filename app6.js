@@ -71,9 +71,9 @@ function control(e){
   }else if(e.keyCode == 38){
 
   }else if(e.keyCode == 39){
-
+    moveRight();
   }else if(e.keyCode == 40){
-
+    moveDown();
   }
 }
 
@@ -96,6 +96,18 @@ function moveLeft(){
   }
   if(pieces.some(index=>wrapper[index + currentPosition].classList.contains('taken'))){
     currentPosition += 1;
+  }
+  draw();
+}
+
+function moveRight(){
+  unDraw();
+  const isRight = pieces.some(index=> (index + currentPosition +1) % width ==0);
+  if(!isRight){
+    currentPosition += 1;
+    if(pieces.some(index=>wrapper[index + currentPosition].classList.contains('taken'))){
+      currentPosition -= 1;
+    }
   }
   draw();
 }
