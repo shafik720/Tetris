@@ -74,7 +74,19 @@ function freeze(){
     if(current.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
         current.forEach(index=>{
             containers[index + currentPosition].classList.add('taken');
-        })
+        })    
+        currentPosition = 4;
+        random = Math.floor(Math.random() * tetromino.length);
+        current = tetromino[random][currentRotation];
+        draw();
+    }
+}
+function freeze2(){
+    if(current.some(index=>containers[currentPosition + index + width].classList.contains('taken'))){
+        current.forEach(index=>{
+            containers[index + currentPosition].classList.add('taken');
+            draw();
+        })    
     
         currentPosition = 4;
         random = Math.floor(Math.random() * tetromino.length);
@@ -103,6 +115,7 @@ function moveLeft(){
         }
     
     }
+    freeze2();
     draw();
 }
 function moveRight(){
@@ -114,5 +127,6 @@ function moveRight(){
             currentPosition -= 1;
         }
     }
+    freeze2();
     draw();
 }
