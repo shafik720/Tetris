@@ -164,7 +164,8 @@ function rotation(){
     }
     if(random == 2){
       if(currentRotation == 0){
-        currentPosition -= 1;
+        // currentPosition -= 1;
+        currentRotation = 3;
       }
     }
     pieces = tetromino[random][currentRotation];
