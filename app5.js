@@ -2,6 +2,7 @@
 let containers  =   Array.from(document.querySelectorAll('.tetris-parent div')),
 grid = document.querySelector('.tetris-parent'),
 width   = 10,
+score = 0,
 timer,
 nextRandom = 0,
 currentPosition = 4,
@@ -106,6 +107,7 @@ function moveDown(){
     freeze();
     showMinidisplay();
     gameScore();
+    finishGame();
 }
 // const isExist = current.some(index=>containers[index + currentPosition].classList.contains('taken'));
 function moveLeft(){
@@ -226,6 +228,14 @@ function gameScore(){
             containers = squareRemoved.concat(containers);
 
             containers.forEach(index=>grid.appendChild(index));
+            score += 10;
+            document.querySelector('.score').innerText = score;
         }
+    }
+}
+
+function finishGame(){
+    if(current.some(index=>containers[index + currentPosition].classList.contains('taken'))){
+        clearInterval(timer);
     }
 }
