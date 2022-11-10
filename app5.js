@@ -160,15 +160,22 @@ function rotation(){
         currentRotation = 0 ;
     }
     current = tetromino[random][currentRotation];
+    
     if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
         if(currentRotation==0){
             currentRotation = 0;
         }else{
-            --currentRotation;
-        }        
-    }
+            --currentRotation;            
+        } 
+        if(random == 2){
+            if(currentRotation == 0){
+                currentPosition -= 1;
+            }
+        }       
+    }    
     current = tetromino[random][currentRotation];
     rotationBug();
+    freeze2();
     draw();
 }
 
