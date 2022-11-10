@@ -62,7 +62,7 @@ function control(e){
     if(e.keyCode == 37){
         moveLeft();
     }else if(e.keyCode == 38){
-        
+        rotation();
     }else if(e.keyCode == 39){
         moveRight();
     }else if(e.keyCode == 40){
@@ -128,5 +128,23 @@ function moveRight(){
         }
     }
     freeze2();
+    draw();
+}
+
+function rotation(){
+    unDraw();
+    currentRotation++;
+    if(currentRotation == current.length){
+        currentRotation = 0 ;
+    }
+    current = tetromino[random][currentRotation];
+    if(current.some(index=>containers[currentPosition + index].classList.contains('taken'))){
+        if(currentRotation==0){
+            currentRotation = 0;
+        }else{
+            --currentRotation;
+        }        
+    }
+    current = tetromino[random][currentRotation];
     draw();
 }
