@@ -131,6 +131,15 @@ function moveRight(){
     draw();
 }
 
+function isLeftEdge(){
+    return current.some(index=>(index + currentPosition) % width === 0 );
+}
+function isRightEdge(){
+    return current.some(index=>(index + currentPosition + 1) % width === 0);
+}
+
+function rotationBug(){}
+
 function rotation(){
     unDraw();
     currentRotation++;
@@ -148,3 +157,4 @@ function rotation(){
     current = tetromino[random][currentRotation];
     draw();
 }
+
