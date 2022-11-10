@@ -128,6 +128,15 @@ function moveRight() {
   draw();
 }
 
+function isLeftEdge(){
+  return pieces.some(index=>(index + currentPosition) % width === 0);
+}
+function isRightEdge(){
+  return pieces.some(index=>(index + currentPosition + 1) % width === 0 );
+}
+
+function rotationBug(){}
+
 function rotation(){
   unDraw();
   currentRotation++;
