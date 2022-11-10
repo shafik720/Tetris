@@ -138,7 +138,15 @@ function isRightEdge(){
     return current.some(index=>(index + currentPosition + 1) % width === 0);
 }
 
-function rotationBug(){}
+function rotationBug(p){
+    p = currentPosition;
+    if((p+1) % width < 5){
+        if(isRightEdge()){
+            currentPosition += 1;
+            rotationBug(p);
+        }
+    }
+}
 
 function rotation(){
     unDraw();
@@ -155,6 +163,7 @@ function rotation(){
         }        
     }
     current = tetromino[random][currentRotation];
+    rotationBug();
     draw();
 }
 
