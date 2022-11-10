@@ -60,4 +60,16 @@ function moveDown(){
     unDraw();
     currentPosition += width;
     draw();
+    freeze();
+}
+
+function freeze(){
+    if(pieces.some(index=>wrapper[index + currentPosition + width].classList.contains('taken'))){
+        pieces.forEach(index=>{
+            wrapper[index + currentPosition].classList.add('taken');
+        })
+        currentPosition = 4;
+        random = Math.floor(Math.random() * tetromino.length);
+        pieces = tetromino[random][currentRotation];
+    }
 }
