@@ -63,6 +63,20 @@ function moveDown(){
     freeze();
 }
 
+document.addEventListener('keydown',control);
+
+function control(e){
+  if(e.keyCode == 37){
+    moveLeft();
+  }else if(e.keyCode == 38){
+
+  }else if(e.keyCode == 39){
+
+  }else if(e.keyCode == 40){
+
+  }
+}
+
 function freeze(){
     if(pieces.some(index=>wrapper[index + currentPosition + width].classList.contains('taken'))){
         pieces.forEach(index=>{
@@ -72,4 +86,16 @@ function freeze(){
         random = Math.floor(Math.random() * tetromino.length);
         pieces = tetromino[random][currentRotation];
     }
+}
+
+function moveLeft(){
+  unDraw();
+  const isLeft = pieces.some(index=> (index + currentPosition) % width == 0)
+  if(!isLeft){
+    currentPosition -= 1;
+  }
+  if(pieces.some(index=>wrapper[index + currentPosition].classList.contains('taken'))){
+    currentPosition += 1;
+  }
+  draw();
 }
