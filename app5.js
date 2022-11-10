@@ -140,9 +140,14 @@ function isRightEdge(){
 
 function rotationBug(p){
     p = currentPosition;
-    if((p+1) % width < 5){
+    if((p+1) % width < 4){
         if(isRightEdge()){
             currentPosition += 1;
+            rotationBug(p);
+        }
+    }else if(p % width > 5){
+        if(isLeftEdge()){
+            currentPosition -= 1;
             rotationBug(p);
         }
     }
