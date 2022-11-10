@@ -55,7 +55,7 @@ function unDraw(){
 }
 
 draw();
-timer = setInterval(moveDown, 300);
+
 
 document.addEventListener('keydown',control);
 
@@ -203,3 +203,11 @@ function showMinidisplay(){
     miniTetro[nextRandom].forEach(index=>displaySquares[index ].classList.add('blue'));
 }
 
+function gameStart(){
+    if(timer){
+        clearInterval(timer);
+        timer = null;
+    }else{
+        timer = setInterval(moveDown, 300);
+    }
+}
