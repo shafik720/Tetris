@@ -2,6 +2,7 @@
 let containers  =   Array.from(document.querySelectorAll('.tetris-parent div')),
 width   = 10,
 timer,
+nextRandom = 0,
 currentPosition = 4,
 currentRotation = 0;
 
@@ -76,8 +77,9 @@ function freeze(){
             containers[index + currentPosition].classList.add('taken');
         })    
         currentPosition = 4;
-        random = Math.floor(Math.random() * tetromino.length);
-        current = tetromino[random][currentRotation];
+        random = nextRandom;
+        nextRandom = Math.floor(Math.random() * tetromino.length);
+        current = tetromino[random][currentRotation];        
         draw();
     }
 }
@@ -89,7 +91,8 @@ function freeze2(){
         })    
     
         currentPosition = 4;
-        random = Math.floor(Math.random() * tetromino.length);
+        random = nextRandom;
+        nextRandom = Math.floor(Math.random() * tetromino.length);
         current = tetromino[random][currentRotation];
         draw();
     }
@@ -100,6 +103,7 @@ function moveDown(){
     currentPosition += width;
     draw();
     freeze();
+    showMinidisplay();
 }
 // const isExist = current.some(index=>containers[index + currentPosition].classList.contains('taken'));
 function moveLeft(){
@@ -195,5 +199,7 @@ const miniTetro = [
   ] 
 
 function showMinidisplay(){
-    
+    displaySquares.forEach(index=>index.classList.remove('blue'));
+    miniTetro[nextRandom].forEach(index=>displaySquares[index ].classList.add('blue'));
 }
+
