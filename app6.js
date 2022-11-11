@@ -86,14 +86,17 @@ function moveDown() {
 }
 
 document.addEventListener('keydown', control);
-
+const soundDown = new Audio("img/music2.mp3");
 function control(e) {
   if (e.keyCode == 37) {
     moveLeft();
+    soundDown.play();
   } else if (e.keyCode == 38) {
     rotation();
+    soundDown.play();
   } else if (e.keyCode == 39) {
     moveRight();
+    soundDown.play();
   } else if (e.keyCode == 40) {
     moveDown();
   }
