@@ -63,6 +63,7 @@ function moveDown() {
   draw();
   freeze();
   score();
+  showMinidisplay();
 }
 
 document.addEventListener('keydown', control);
@@ -205,3 +206,17 @@ function score(){
     }
   }
 }
+
+// working on mini display
+let miniTetroDiv = document.querySelectorAll('.mini-grid div');
+let displayWidth = 4;
+
+const miniTetro = [
+  [1, displayWidth + 1, displayWidth * 2 + 1, 2], // L tetromino
+  [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //Z tetromino
+  [1, displayWidth, displayWidth + 1, displayWidth + 2], // T tetromino
+  [0, 1, displayWidth, displayWidth + 1], // O tetromino
+  [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
+] 
+
+function showMinidisplay(){}
