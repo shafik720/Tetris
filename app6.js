@@ -219,4 +219,7 @@ const miniTetro = [
   [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iTetromino
 ] 
 
-function showMinidisplay(){}
+function showMinidisplay(){
+  miniTetroDiv.forEach(index=>index.classList.remove('blue'));
+  miniTetro[0].forEach(index=>miniTetroDiv[index].classList.add('blue'));
+}
