@@ -3,6 +3,7 @@ let grid = document.querySelector('.tetris-parent'),
   wrapper = Array.from(document.querySelectorAll('.tetris-parent div')),
   currentPosition = 4,
   scores = 0,
+  nextRandom = 0,
   timer,
   currentRotation = 0,
   width = 10;
@@ -86,7 +87,8 @@ function freeze() {
       wrapper[index + currentPosition].classList.add('taken');
     })
     currentPosition = 4;
-    random = Math.floor(Math.random() * tetromino.length);
+    random = nextRandom;
+    nextRandom = Math.floor(Math.random() * tetromino.length);
     pieces = tetromino[random][currentRotation];
   }
   draw();
@@ -221,5 +223,5 @@ const miniTetro = [
 
 function showMinidisplay(){
   miniTetroDiv.forEach(index=>index.classList.remove('blue'));
-  miniTetro[0].forEach(index=>miniTetroDiv[index].classList.add('blue'));
+  miniTetro[nextRandom].forEach(index=>miniTetroDiv[index].classList.add('blue'));
 }
