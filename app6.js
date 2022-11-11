@@ -49,12 +49,28 @@ let random = Math.floor(Math.random() * tetromino.length);
 let pieces = tetromino[random][currentRotation];
 
 function draw() {
-  pieces.forEach(index => wrapper[currentPosition + index].classList.add('blue'));
+  pieces.forEach(index => {
+    wrapper[currentPosition + index].classList.add('blue');
+    if(random == 0){
+      wrapper[currentPosition + index].style.backgroundColor = 'green';
+    }else if(random == 1){
+      wrapper[currentPosition + index].style.backgroundColor = 'red';
+    }else if(random == 2){
+      wrapper[currentPosition + index].style.backgroundColor = 'yellow';
+    }else if(random == 3){
+      wrapper[currentPosition + index].style.backgroundColor = 'orange';
+    }else if(random == 4){
+      wrapper[currentPosition + index].style.backgroundColor = 'cyan';
+    }
+  });
   
 }
 draw();
 function unDraw() {
-  pieces.forEach(index => wrapper[currentPosition + index].classList.remove('blue'));
+  pieces.forEach(index =>{
+    wrapper[currentPosition + index].classList.remove('blue');
+    wrapper[currentPosition + index].style.backgroundColor = 'white';
+  })
 }
 
 
@@ -199,6 +215,7 @@ function score(){
       row.forEach(index=>{
         wrapper[index].classList.remove('taken');
         wrapper[index].classList.remove('blue');
+        wrapper[index].style.backgroundColor = 'white';
       })
 
       let squaresRemoved = wrapper.splice(i, width);
