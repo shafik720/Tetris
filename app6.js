@@ -2,6 +2,7 @@
 let grid = document.querySelector('.tetris-parent'),
   wrapper = Array.from(document.querySelectorAll('.tetris-parent div')),
   currentPosition = 4,
+  scores = 0,
   timer,
   currentRotation = 0,
   width = 10;
@@ -194,9 +195,13 @@ function score(){
         wrapper[index].classList.remove('taken');
         wrapper[index].classList.remove('blue');
       })
+
       let squaresRemoved = wrapper.splice(i, width);
       wrapper = squaresRemoved.concat(wrapper);
       wrapper.forEach(index=>grid.appendChild(index));
+
+      scores += 10;
+      document.querySelector('.score').innerText = scores ;
     }
   }
 }
