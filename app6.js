@@ -87,6 +87,7 @@ function moveDown() {
 
 document.addEventListener('keydown', control);
 const soundDown = new Audio("img/music2.mp3");
+const scoreMusic = new Audio("img/score.mp3")
 function control(e) {
   if (e.keyCode == 37) {
     moveLeft();
@@ -99,6 +100,7 @@ function control(e) {
     soundDown.play();
   } else if (e.keyCode == 40) {
     moveDown();
+    soundDown.play();
   }
 }
 
@@ -227,6 +229,7 @@ function score(){
 
       scores += 10;
       document.querySelector('.score').innerText = scores ;
+      scoreMusic.play();
     }
   }
 }
