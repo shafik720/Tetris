@@ -196,7 +196,7 @@ function score(){
       })
       let squaresRemoved = wrapper.splice(i, width);
       wrapper = squaresRemoved.concat(wrapper);
-      
+      wrapper.forEach(index=>grid.appendChild(index));
     }
   }
 }
