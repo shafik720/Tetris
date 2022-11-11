@@ -50,6 +50,7 @@ let pieces = tetromino[random][currentRotation];
 
 function draw() {
   pieces.forEach(index => wrapper[currentPosition + index].classList.add('blue'));
+  
 }
 draw();
 function unDraw() {
