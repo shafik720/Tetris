@@ -54,7 +54,7 @@ function unDraw() {
   pieces.forEach(index => wrapper[currentPosition + index].classList.remove('blue'));
 }
 
-timer = setInterval(moveDown, 300);
+
 
 function moveDown() {
   unDraw();
@@ -174,4 +174,13 @@ function rotation(){
   rotationBug();
   secondFreeze();
   draw();
+}
+
+function gameStart(){
+  if(timer){
+    clearInterval(timer);
+    timer = null ; 
+  }else if(!timer){
+    timer = setInterval(moveDown, 300);
+  }
 }
