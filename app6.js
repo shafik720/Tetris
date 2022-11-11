@@ -52,15 +52,15 @@ function draw() {
   pieces.forEach(index => {
     wrapper[currentPosition + index].classList.add('blue');
     if(random == 0){
-      wrapper[currentPosition + index].style.backgroundColor = 'green';
+      wrapper[currentPosition + index].style.backgroundColor = '#9e0c39';
     }else if(random == 1){
-      wrapper[currentPosition + index].style.backgroundColor = 'red';
+      wrapper[currentPosition + index].style.backgroundColor = '#028f76';
     }else if(random == 2){
-      wrapper[currentPosition + index].style.backgroundColor = 'yellow';
+      wrapper[currentPosition + index].style.backgroundColor = '#601848';
     }else if(random == 3){
-      wrapper[currentPosition + index].style.backgroundColor = 'orange';
+      wrapper[currentPosition + index].style.backgroundColor = '#001449';
     }else if(random == 4){
-      wrapper[currentPosition + index].style.backgroundColor = 'cyan';
+      wrapper[currentPosition + index].style.backgroundColor = '#ff3d00';
     }
   });
   
