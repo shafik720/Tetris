@@ -65,6 +65,7 @@ function moveDown() {
   freeze();
   score();
   showMinidisplay();
+  gameOver();
 }
 
 document.addEventListener('keydown', control);
@@ -224,4 +225,10 @@ const miniTetro = [
 function showMinidisplay(){
   miniTetroDiv.forEach(index=>index.classList.remove('blue'));
   miniTetro[nextRandom].forEach(index=>miniTetroDiv[index].classList.add('blue'));
+}
+
+function gameOver(){
+  if(pieces.some(index=>wrapper[index + currentPosition].classList.contains('taken'))){
+    clearInterval(timer);
+  }
 }
