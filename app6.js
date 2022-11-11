@@ -194,6 +194,9 @@ function score(){
         wrapper[index].classList.remove('taken');
         wrapper[index].classList.remove('blue');
       })
+      let squaresRemoved = wrapper.splice(i, width);
+      wrapper = squaresRemoved.concat(wrapper);
+      
     }
   }
 }
