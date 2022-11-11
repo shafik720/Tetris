@@ -88,6 +88,7 @@ function moveDown() {
 document.addEventListener('keydown', control);
 const soundDown = new Audio("img/music2.mp3");
 const scoreMusic = new Audio("img/score.mp3")
+const gameOverMusic = new Audio("img/gameOver.mp3")
 function control(e) {
   if (e.keyCode == 37) {
     moveLeft();
@@ -254,5 +255,6 @@ function showMinidisplay(){
 function gameOver(){
   if(pieces.some(index=>wrapper[index + currentPosition].classList.contains('taken'))){
     clearInterval(timer);
+    gameOverMusic.play();
   }
 }
